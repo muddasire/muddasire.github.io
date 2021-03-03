@@ -14,12 +14,12 @@
 </head>
 
 <body class="border border-primary">
-    <button id="rzp-button1">Pay 3</button>
+    <button id="rzp-button1">Pay 4</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         var options = {
             "key": "rzp_test_BNRLROGFnxu3NQ", // Enter the Key ID generated from the Dashboard
-            "amount": "5000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "amount": "100", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "method": {
                 "netbanking": "0",
@@ -35,9 +35,9 @@
                 window.ReactNativeWebView.postMessage("success msg sent to app")
             },
             "prefill": {
-                "name": "Gaurav Kumar",
-                "email": "gaurav.kumar@example.com",
-                "contact": "9999999999"
+                "name": "Muddasir",
+                "email": "muddasir009@gmail.com",
+                "contact": "8714455705"
             },
             "notes": {
                 "address": "Razorpay Corporate Office"
