@@ -14,7 +14,7 @@
 </head>
 
 <body class="border border-primary">
-    <button id="rzp-button1">Pay 2</button>
+    <button id="rzp-button1">Pay 3</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         var options = {
@@ -31,9 +31,8 @@
             "description": "Test Transaction",
             "image": "https://s3.ap-south-1.amazonaws.com/cdn.firstu.in/fav.png",
             "handler": function (response) {
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature)
+                alert("success in webpage");
+                window.ReactNativeWebView.postMessage("success msg sent to app")
             },
             "prefill": {
                 "name": "Gaurav Kumar",
@@ -49,13 +48,8 @@
         };
         var rzp1 = new Razorpay(options);
         rzp1.on('payment.failed', function (response) {
-            alert(response.error.code);
-            alert(response.error.description);
-            alert(response.error.source);
-            alert(response.error.step);
-            alert(response.error.reason);
-            alert(response.error.metadata.order_id);
-            alert(response.error.metadata.payment_id);
+            alert("failed in webpage");
+            window.ReactNativeWebView.postMessage("failed msg sent to app")
         });
         document.getElementById('rzp-button1').onclick = function (e) {
             rzp1.open();
