@@ -1,0 +1,48 @@
+var options = {
+  "key": "rzp_live_bBsGtnksR56hv4", // Enter the Key ID generated from the Dashboard
+  "amount": "${amount}00", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  "currency": "INR",
+  "method": {
+      "netbanking": "0",
+      "card": "0",
+      "upi": "1",
+      "wallet": "0"
+  },
+  "name": "FirstU",
+  "description": "",
+  "image": "https://s3.ap-south-1.amazonaws.com/cdn.firstu.in/fav.png",
+  "handler": function (response) {
+      window.ReactNativeWebView.postMessage("success")
+  },
+  "prefill": {
+      "name": "${user_rewards.customer}",
+      "email": "${user_rewards.user_id}",
+      "contact": "${user_rewards.phone_number}"
+  },
+  "notes": {
+      "address": "Razorpay Corporate Office"
+  },
+  "theme": {
+      "color": "#1097FD"
+  },
+  "modal": {
+      "ondismiss": function () {
+          window.ReactNativeWebView.postMessage("failed")
+      }
+  }
+};
+var rzp2 = new Razorpay(options);
+rzp2.on('payment.failed', function (response) {
+  window.ReactNativeWebView.postMessage("failed")
+});
+rzp2.close
+document.getElementById('rzp-button1').onclick = function (e) {
+  rzp2.open();
+  e.preventDefault();
+}
+
+$(document).ready(function () {
+  rzp2.open();
+  document.getElementById("loader").remove()
+});
+true; // note: this is required, or you'll sometimes get silent failures
